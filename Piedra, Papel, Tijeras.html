@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Piedra, Papel, Tijeras</title>
+    
+</head>
+
+<body>
+    
+    <script>
+        let nombre = "";
+        nombre = prompt("Cual es tu nombre?");
+        alert("Bienvenido " + nombre + ", vamos a jugar Piedra, Papel o Tijeras");
+
+        let opciones = ["Piedra", "Papel", "Tijeras"];
+        let eleccionUsuario = "";
+        let eleccionComputadora = "";
+
+        function obtenerEleccionComputadora() {
+            let indiceAleatorio = Math.floor(Math.random() * opciones.length);
+            return opciones[indiceAleatorio];
+        }
+
+        function determinarGanador(usuario, computadora) {
+            if (usuario === computadora) {
+                return "Empate";
+            } else if (
+                (usuario === "Piedra" && computadora === "Tijeras") ||
+                (usuario === "Papel" && computadora === "Piedra") ||
+                (usuario === "Tijeras" && computadora === "Papel")
+            ) {
+                return "Ganaste";
+            } else {
+                return "Perdiste";
+            }
+        }
+
+        while (true) {
+            eleccionUsuario = prompt("Elige: Piedra, Papel o Tijeras (o escribe 'salir' para terminar)").trim();
+            if (eleccionUsuario.toLowerCase() === 'salir') {
+                alert("Gracias por jugar, " + nombre + "!");
+                break;
+            }
+            if (!opciones.includes(eleccionUsuario)) {
+                alert("Elección inválida. Por favor elige Piedra, Papel o Tijeras.");
+                continue;
+            }
+
+            eleccionComputadora = obtenerEleccionComputadora();
+            alert("La computadora eligió: " + eleccionComputadora);
+
+            let resultado = determinarGanador(eleccionUsuario, eleccionComputadora);
+            alert(resultado);
+        }
+
+                
+
+    </script>
+
+
+</body>

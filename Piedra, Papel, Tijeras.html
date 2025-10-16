@@ -1,63 +1,68 @@
+<!DOCTYPE html>
 <html>
 
-<head>
+<head style= background-color:black;>
     <meta charset="UTF-8">
 
     <title>Piedra, Papel, Tijeras</title>
     
+    
+
 </head>
 
-<body>
+<body style= background-color:black;>
     
     <script>
-        let nombre = "";
-        nombre = prompt("Cual es tu nombre?");
-        alert("Bienvenido " + nombre + ", vamos a jugar Piedra, Papel o Tijeras");
+        let gamertag = prompt("¿Cuál es tu nombre?"); // Pide el nombre del jugador
+        const options = ["Piedra", "Papel", "Tijeras"]; // Array con las opciones del juego
 
-        let opciones = ["Piedra", "Papel", "Tijeras"];
-        let eleccionUsuario = "";
-        let eleccionComputadora = "";
-
-        function obtenerEleccionComputadora() {
-            let indiceAleatorio = Math.floor(Math.random() * opciones.length);
-            return opciones[indiceAleatorio];
+        // Pedimos la elección y normalizamos la entrada del jugador
+        let player_choice = prompt("Elige Piedra, Papel o Tijeras"); // Variable para almacenar la eleccion del jugador
+        if (player_choice) {
+            player_choice = player_choice.trim().toLowerCase();
+            // Aceptar singular/plural y variaciones comunes
+            if (player_choice === 'piedra' || player_choice === 'piedras') player_choice = 'Piedra';
+            else if (player_choice === 'papel' || player_choice === 'papeles') player_choice = 'Papel';
+            else if (player_choice === 'tijera' || player_choice === 'tijeras') player_choice = 'Tijeras';
+            else {
+                // Intentar capitalizar si el texto no coincide exactamente
+                player_choice = player_choice.charAt(0).toUpperCase() + player_choice.slice(1).toLowerCase();
+            }
+        } else {
+            player_choice = ""; // usuario canceló o dejó vacío
         }
 
-        function determinarGanador(usuario, computadora) {
-            if (usuario === computadora) {
-                return "Empate";
-            } else if (
-                (usuario === "Piedra" && computadora === "Tijeras") ||
-                (usuario === "Papel" && computadora === "Piedra") ||
-                (usuario === "Tijeras" && computadora === "Papel")
-            ) {
-                return "Ganaste";
-            } else {
-                return "Perdiste";
-            }
+        // Genera la elección de la PC correctamente (Math en lugar de math)
+        let PC = Math.floor(Math.random() * 3) + 1; // Genera un numero aleatorio entre 1 y 3
+
+        if (PC == 1) { // Condicional para asignar la eleccion de la PC
+            PC = "Piedra";
+        } else if (PC == 2) {
+            PC = "Papel";
+        } else {
+            PC = "Tijeras";
         }
 
-        while (true) {
-            eleccionUsuario = prompt("Elige: Piedra, Papel o Tijeras (o escribe 'salir' para terminar)").trim();
-            if (eleccionUsuario.toLowerCase() === 'salir') {
-                alert("Gracias por jugar, " + nombre + "!");
-                break;
-            }
-            if (!opciones.includes(eleccionUsuario)) {
-                alert("Elección inválida. Por favor elige Piedra, Papel o Tijeras.");
-                continue;
-            }
+        let winner = ""; // Variable para almacenar el ganador
 
-            eleccionComputadora = obtenerEleccionComputadora();
-            alert("La computadora eligió: " + eleccionComputadora);
-
-            let resultado = determinarGanador(eleccionUsuario, eleccionComputadora);
-            alert(resultado);
+        // Logica del juego
+        if (player_choice === PC) { // EMPATE
+            winner = "Empate";
+        } else if ((player_choice === "Piedra" && PC === "Tijeras") || (player_choice === "Papel" && PC === "Piedra") || (player_choice === "Tijeras" && PC === "Papel")) { // GANA EL JUGADOR
+            winner = gamertag || "Jugador";
+        } else if ((player_choice === "Piedra" && PC === "Papel") || (player_choice === "Papel" && PC === "Tijeras") || (player_choice === "Tijeras" && PC === "Piedra")) { // GANA LA PC
+            winner = "PC";
+        } else {
+            alert("Elección inválida, por favor elige Piedra, Papel o Tijeras");
+            winner = "Elección inválida";
         }
-
-                
 
     </script>
 
+    <h1 style= "color:white; font-size: 48px; font-family:Arial;">Piedra, Papel o Tijeras</h1>    
+    <h2 style= "color:rgb(0, 233, 31); font-size: 24px; font-family:Arial;">Jugador: <script>document.write(gamertag)</script></h2> 
+    <h3 style= "color:white; font-size: 20px; font-family:Arial;">Tu eleccion: <script>document.write(player_choice)</script></h3>
+    <h4 style= "color:rgb(235, 0, 0); font-size: 20px; font-family:Arial;">Eleccion de la PC: <script>document.write(PC)</script></h4>
+    <h5 style= "color:white; font-size: 24px; font-family:Arial;">Resultado: <script>document.write(winner)</script></h5>
 
 </body>

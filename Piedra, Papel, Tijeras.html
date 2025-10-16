@@ -49,9 +49,9 @@
         if (player_choice === PC) { // EMPATE
             winner = "Empate";
         } else if ((player_choice === "Piedra" && PC === "Tijeras") || (player_choice === "Papel" && PC === "Piedra") || (player_choice === "Tijeras" && PC === "Papel")) { // GANA EL JUGADOR
-            winner = gamertag || "Jugador";
+            winner = (gamertag + "es el ganador");
         } else if ((player_choice === "Piedra" && PC === "Papel") || (player_choice === "Papel" && PC === "Tijeras") || (player_choice === "Tijeras" && PC === "Piedra")) { // GANA LA PC
-            winner = "PC";
+            winner = "PC es el ganador";
         } else {
             alert("Elección inválida, por favor elige Piedra, Papel o Tijeras");
             winner = "Elección inválida";
@@ -63,6 +63,21 @@
     <h2 style= "color:rgb(0, 233, 31); font-size: 24px; font-family:Arial;">Jugador: <script>document.write(gamertag)</script></h2> 
     <h3 style= "color:white; font-size: 20px; font-family:Arial;">Tu eleccion: <script>document.write(player_choice)</script></h3>
     <h4 style= "color:rgb(235, 0, 0); font-size: 20px; font-family:Arial;">Eleccion de la PC: <script>document.write(PC)</script></h4>
-    <h5 style= "color:white; font-size: 24px; font-family:Arial;">Resultado: <script>document.write(winner)</script></h5>
+    
+
+
+    <h5 style= "color:white; font-size: 24px; font-family:Arial;">Resultado: <script>
+    if (winner === "Empate") {
+        document.write("Es un empate");
+    } else if (winner === "Elección inválida") {
+        document.write("Elección inválida, por favor recarga la página e intenta de nuevo.");
+    } else {
+    
+    document.write(winner)
+    }
+
+    </script>
+    
+    </h5>
 
 </body>

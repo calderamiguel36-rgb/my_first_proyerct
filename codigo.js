@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
 
-<head style= background-color:black;>
-    <meta charset="UTF-8" />
 
-    <title>Piedra, Papel, Tijeras</title>    
 
-</head>
 
-<body style= background-color:black;>
-    
-    <script>
-
-        let gamertag = prompt("¿Cuál es tu nombre?"); // Pide el nombre del jugador
+let gamertag = prompt("¿Cuál es tu nombre?"); // Pide el nombre del jugador
         const options = ["Piedra", "Papel", "Tijeras"]; // Array con las opciones del juego
 
+
+let play_game = true; // Variable para controlar el bucle del juego
+
+while (play_game) { // Bucle para repetir el juego hasta que el jugador decida salir
 
         // Pedimos la elección y normalizamos la entrada del jugador
         let player_choice = prompt("Elige Piedra, Papel o Tijeras"); // Variable para almacenar la eleccion del jugador
@@ -55,21 +49,5 @@
         } else {
             alert("Elección inválida, por favor elige Piedra, Papel o Tijeras");
             winner = "Elección inválida";
-        }       
-        
-    
-    </script>
-
-    <h1 style= "color:white; font-size: 48px; font-family:Arial;">Piedra, Papel o Tijeras</h1>    
-    <h2 style= "color:rgb(0, 233, 31); font-size: 24px; font-family:Arial;">Jugador: <script>document.write(gamertag)</script></h2> 
-    <h3 style= "color:white; font-size: 20px; font-family:Arial;">Tu eleccion: <script>document.write(player_choice)</script></h3>
-    <h4 style= "color:rgb(235, 0, 0); font-size: 20px; font-family:Arial;">Eleccion de la PC: <script>document.write(PC)</script></h4>
-    <h5 style= "color:white; font-size: 24px; font-family:Arial;">Resultado: <script>document.write(winner)</script></h5>
-
-    <section id="Prueba"> </section>
-        
-
-
-
-
-</body>
+        }
+    }
